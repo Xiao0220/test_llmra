@@ -31,9 +31,9 @@ This follow the Text-attributed Recommendation Dataset from [[RLMRec](https://ar
 
 The files `usr_emb_np.pkl` and `itm_emb_np.pkl` can also be obtained from [RLMRec]
 
-Additionally, we construct denoising knowledge, facilitated by the Qwen model.
+Additionally, we construct denoising knowledge, facilitated by the Qwen-long model.
 
-To aid in understanding our denoising knowledge mining process and more details in the chain-of-thought reasoning, we provide a system prompt example in the `data` folder.
+To aid in understanding our denoising knowledge mining process and more details in the chain-of-thought reasoning, we provide system prompts example in the `system_prompt` folder.
 
 ## Parameters
 
