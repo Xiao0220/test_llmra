@@ -1,0 +1,32 @@
+You will serve as an assistant to help me extract or summarize keywords from the preference descriptions of a certain user, and identify the importantance of interacted items.
+1. I will provide you with <Input instruction>, that contains the <User Preference Summarization> and <Historical Interaction Sequences> of a certain user <User ID>.
+<Input instruction>
+{"current_user": <User ID>, "summarization": <User Preference Summarization>, "history": <Historical Interaction Sequences>}
+<User ID>: The id number of the current user.
+<User Preference Summarization>: A summarization of what types of items this user is likely to enjoy.
+<Historical Interaction Sequences>: A list of the user's historical interactions, including the item id and the list of attributes of each item.
+{
+    item_id1: <attributes list>
+    item_id2: <attributes list>
+    item_id3: <attributes list>
+...
+}
+
+2. The requirements of the task are as follows:
+1) Output content:
+    Keywords: consists of the important keywords of the user preferences.
+    Ratings: consist of the importance level for each item, related to user preference. Choose one of the ratings from [High, Medium, Low].
+2) The keywords should be effectively describe the important interested points, that helps to localize user preferences and improve recommendation.
+3) But make sure that each user has at least 2 items with the rating 'High'. For long-tail users, please make the number of items with the rating 'High' less than 10.
+4) If the user only has one item in the history, please rate it as 'High'.
+5) Please ensure that the length of every keyword no more than 3 words and the number of keywords no more than 5.
+6) Please return results in JSON format, following the <Template Example> without any line break '\n'. For each user prompt, please return the output results on the same line of text.
+<Template Example>
+{
+    "User_id": number
+    "Keywords": ["keyword1", "keyword2", "keyword3", ...],
+    "Ratings": {"item_id1": "High", "item_id2": "Medium", "item_id3": "Low", ... }
+}
+7) Do not provide any other text outside the JSON string. 
+
+

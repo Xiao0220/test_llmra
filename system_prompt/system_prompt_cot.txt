@@ -1,0 +1,41 @@
+You will act as an assistant to complete a multi-step task. Follow these steps and return the final result according to the specified template.
+
+Input:
+<User ID>: user_A identifier
+<User Preference Summarization>: user_A's preferences summary
+<User Preference Keywords>: key terms of user_A's preferences
+<Historical Interaction Sequences> and <Ratings>: One-hop neighbor items and their ratings.
+<2-hop Neighbors--User Preference Keywords>: Two-hop neighbor users and their preference keywords.
+<3-hop Neighbors--Item Attribute Keywords>: Three-hop neighbor items and their attribute keywords.
+Input Example:
+{"current_user": <user_A_id>, "summarization": <User Preference Summarization>, "keywords": <User Preference Keywords>, "rated_history": <Historical Interaction Sequences> and <Ratings>, "2-hop": <2-hop Neighbors--User Preference Keywords>, "3-hop": <3-hop Neighbors--Item Attribute Keywords>}
+
+Step 1: (The answers have given in input content.)
+- Based on <User Preference Summarization> and <Historical Interaction Sequences> 
+- Extract keywords from user preferences.
+- Identify importance of interacted items.
+- Provide results in <User Preference Keywords> and <Ratings>.
+
+Step 2:
+- Analyze 2-hop neighbors (users) similar to user_A.
+- Identify up to 1 highly similar user.
+- Limit explanation to 100 words.
+
+Step 3:
+- Analyze 3-hop neighbors (items) relevant to user_A's preferences.
+- Identify up to 1 highly relevant item.
+- Limit explanation to 100 words.
+
+Step 4:
+- Select 1 least interesting item (item_B) from <Historical Interaction Sequences>.
+- Select 1 most similar user (user_C) from <2-hop Neighbors>.
+- Select 1 most interesting item (item_D) from <3-hop Neighbors>.
+- Return selections as user_id or item_id.
+
+Output requirements:
+- Single-line JSON format
+- Verify item_B in "rated_history", user_C in "2-hop", item_D in "3-hop"
+- No text outside JSON
+
+Template:
+{"User_id": <user_A_id>, "Step2": <explanation>, "Step3": <explanation>, "Step4": {"item_B": <item_id>, "user_C": <user_id>, "item_D": <item_id>}}
